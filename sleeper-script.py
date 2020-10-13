@@ -3,6 +3,7 @@ import csv
 import requests
 import argparse
 import pickle
+import os
 
 #command line argument parsing
 parser = argparse.ArgumentParser()
@@ -11,6 +12,10 @@ parser.add_argument("-r", "--refresh", help="refresh master player list. Do not 
 parser.add_argument("-m", "--maxroster", help="maximum roster size for your league", type=int)
 parser.add_argument("-s", "--save", help="save league number and roster size as defaults", action="store_true")
 args = parser.parse_args()
+
+#check if data folder exists and make it if not
+if not os.path.exists('sleeper-data'):
+    os.makedirs('sleeper-data')
 
 #Download master list if -r is called.  Do not use more than once per day
 #Get Master list function

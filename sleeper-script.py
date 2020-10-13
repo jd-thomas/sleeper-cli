@@ -27,7 +27,7 @@ try:
     with open('sleeper-data/user-options', 'rb') as g:
       options = pickle.load(g)
 except FileNotFoundError:
-    print("No user data detected. Saving league number and max roster as defaults. To change defaults run with -s.")
+    print("No user data detected. To save defaults run with -s.")
 
 #Input league values or retrieve defaults
 if args.league:

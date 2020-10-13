@@ -13,6 +13,12 @@ parser.add_argument("-s", "--save", help="save league number and roster size as 
 args = parser.parse_args()
 
 #Download master list if -r is called.  Do not use more than once per day
+#Get Master list function
+def get_master_list():
+    p = requests.get('https://api.sleeper.app/v1/players/nfl')
+    with open('sleeper-data/players.json','w') as pout:
+        pout.write(p.text)
+
 if args.refresh:
     print("Downloading master list...")
     get_master_list()
@@ -48,12 +54,6 @@ if args.save:
             'maxroster': args.maxroster  
         }
         pickle.dump(options, g)
-
-#Get Master list function
-def get_master_list():
-    p = requests.get('https://api.sleeper.app/v1/players/nfl')
-    with open('sleeper-data/players.json','w') as pout:
-        pout.write(p.text)
         
 #Update league list function
 def update_league_lists():
